@@ -584,7 +584,7 @@ function ChatTab({ games, sport, market }) {
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514", max_tokens: 1000,
           system: `You are a sharp, brutally honest sports betting analyst. NEVER validate a bad bet just because the user likes it. Always lead with the math. If a bet has no edge, say so. Be concise and direct.\n\nCurrent slate (${sport}, ${market}):\n${slateContext || "No slate loaded"}`,
-          messages: newMessages.map(m => ({ role: m.role, content: m.content }))
+         messages: newMessages.map(m => ({ role: m.role, content: m.content }))
         })
       });
       const data = await res.json();
