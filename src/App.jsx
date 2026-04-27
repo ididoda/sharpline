@@ -578,9 +578,9 @@ function ChatTab({ games, sport, market }) {
       return `${g.away_team || ""} @ ${g.home_team}: ${outcomes.map(o => `${o.name} ${formatAmerican(o.price)}`).join(", ")}`;
     }).join("\n");
     try {
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "anthropic-dangerous-direct-browser-access": "true" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514", max_tokens: 1000,
           system: `You are a sharp, brutally honest sports betting analyst. NEVER validate a bad bet just because the user likes it. Always lead with the math. If a bet has no edge, say so. Be concise and direct.\n\nCurrent slate (${sport}, ${market}):\n${slateContext || "No slate loaded"}`,
